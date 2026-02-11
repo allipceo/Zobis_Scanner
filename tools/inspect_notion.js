@@ -1,6 +1,6 @@
 const https = require('https');
 
-const NOTION_KEY = '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';
+const NOTION_KEY = process.env.NOTION_KEY || 'YOUR_NOTION_KEY_HERE';
 const DATABASE_ID = 'ffcc68c306ce47e2b58541c42d53a5f4';
 
 const options = {

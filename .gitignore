@@ -1,0 +1,15 @@
+# Credentials & Sensitive files
+sensitive.env
+.env
+*.env
+config.js # Only if it contains real keys. For now we keep it but restrict in Google Console.
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
