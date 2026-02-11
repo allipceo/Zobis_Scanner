@@ -1,0 +1,315 @@
+/* CSS Reset & Variables */
+:root {
+    --bg-color: #0f172a;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --neon-blue: #3b82f6;
+    --neon-glow: 0 0 10px rgba(59, 130, 246, 0.5);
+    --input-bg: rgba(0, 0, 0, 0.3);
+    --danger: #ef4444;
+    --success: #22c55e;
+    
+    --header-height: 60px;
+    --footer-height: 80px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    background: radial-gradient(circle at top right, #1e293b, #0f172a 80%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+}
+
+small {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* Utilities */
+.hidden {
+    display: none !important;
+}
+
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.glass-panel-top {
+    background: rgba(15, 23, 42, 0.8); /* Darker background for clearer separation */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-top: 1px solid var(--glass-border);
+}
+
+/* Layout */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-bottom: calc(var(--footer-height) + 20px); /* Space for sticky footer */
+}
+
+/* Header */
+.header {
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--glass-border);
+    border-width: 0 0 1px 0; /* Only bottom border */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.logo-text small {
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+.user-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--text-secondary); /* Default offline/guest */
+}
+
+.status-dot.active {
+    background-color: var(--success);
+    box-shadow: 0 0 5px var(--success);
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Preview Section */
+.preview-section {
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.preview-section:active {
+    border-color: var(--neon-blue);
+}
+
+.image-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.placeholder {
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.placeholder .icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Form Section */
+.form-section {
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-left: 4px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input {
+    width: 100%;
+    background: var(--input-bg);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 12px 36px 12px 12px; /* Right padding for clear btn */
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: var(--neon-blue);
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.input-wrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.clear-btn {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 4px;
+    display: none; /* Hidden by default */
+}
+
+.input-wrapper input:not(:placeholder-shown) + .clear-btn {
+    display: block;
+}
+
+/* Footer Actions */
+.footer-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--footer-height);
+    display: flex;
+    justify-content: center; /* Centered max-width container */
+    padding: 0 20px;
+    z-index: 100;
+}
+
+/* Inner container to match main content width */
+.footer-actions::before {
+    content: '';
+    display: block;
+    /* This pseudo-element is a trick, but better to structure HTML correctly. 
+       Actually, let's just style the buttons to be responsive.
+       For a sticky footer in a mobile app, buttons normally stretch or sit in a safe area. 
+    */
+}
+
+.footer-actions {
+    align-items: center;
+    gap: 12px;
+}
+
+.btn {
+    border: none;
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: inherit;
+}
+
+.btn:active {
+    transform: scale(0.96);
+}
+
+.btn-primary {
+    background-color: var(--neon-blue);
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    flex: 2; /* Takes more space */
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid var(--glass-border);
+    flex: 1;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 480px) {
+    .main-content {
+        padding: 16px;
+    }
+    
+    .form-group label {
+        font-size: 0.8rem;
+    }
+    
+    .input-wrapper input {
+        font-size: 16px; /* Prevent iOS zoom */
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
+}
