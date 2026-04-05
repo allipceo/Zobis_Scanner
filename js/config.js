@@ -8,16 +8,13 @@
  */
 
 const CONFIG = {
-    // Client ID from test01/sensitive.env
-    CLIENT_ID: 'YOUR_GOOGLE_CLIENT_ID_HERE',
+    // Client ID for Google Authentication
+    CLIENT_ID: '80061118878-smdd31gk43q6sbe6nbvdlflhq0qacnho.apps.googleusercontent.com',
 
-    // API Key from test01/sensitive.env
-    // [TROUBLESHOOTING]: If you see 403 API_KEY_SERVICE_BLOCKED:
-    // 1. Visit: https://console.cloud.google.com/apis/library/vision.googleapis.com
-    // 2. Ensure "API Enable" is definitely active.
-    // 3. Visit: https://console.cloud.google.com/apis/credentials
-    // 4. Check "API Restrictions" on your key. Set to "None" or add "Cloud Vision API".
-    API_KEY: 'YOUR_GOOGLE_API_KEY_HERE',
+    // API Key for Google Cloud Vision API
+    // [SECURITY]: To prevent unauthorized usage, please set "Website Restrictions" 
+    // to "https://allipceo.github.io/*" in the Google Cloud Console.
+    API_KEY: 'AIzaSyDVlqKf1SS6EsAmR8sNYFkjFwOHVrjFHqo',
 
     // OAuth Scopes
     SCOPES: [
