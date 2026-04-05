@@ -12,17 +12,25 @@ const CONFIG = {
     CLIENT_ID: '80061118878-smdd31gk43q6sbe6nbvdlflhq0qacnho.apps.googleusercontent.com',
 
     // API Key from test01/sensitive.env
+    // [TROUBLESHOOTING]: If you see 403 API_KEY_SERVICE_BLOCKED:
+    // 1. Visit: https://console.cloud.google.com/apis/library/vision.googleapis.com
+    // 2. Ensure "API Enable" is definitely active.
+    // 3. Visit: https://console.cloud.google.com/apis/credentials
+    // 4. Check "API Restrictions" on your key. Set to "None" or add "Cloud Vision API".
     API_KEY: 'AIzaSyAad7067Y5S6Bs8gPkYh6G-LWRO1u5dzbU',
 
     // OAuth Scopes
     SCOPES: [
-        'https://www.googleapis.com/auth/contacts', // For saving contacts
-        'https://www.googleapis.com/auth/cloud-vision' // For OCR (if using client-side API, though API Key is usually enough for key-based auth)
+        'https://www.googleapis.com/auth/contacts',
+        'https://www.googleapis.com/auth/cloud-vision'
     ].join(' '),
 
     // Mock Authentication Toggle
     USE_MOCK_AUTH: false,
 
     // Mock OCR Toggle (Use this if API Key is blocked or billing is not enabled)
-    USE_MOCK_OCR: false
+    USE_MOCK_OCR: false,
+
+    // Advanced Diagnostics
+    ENABLE_DIAGNOSTICS: true
 };

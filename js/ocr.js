@@ -62,6 +62,10 @@ const OCRManager = (() => {
         };
 
         try {
+            if (CONFIG.ENABLE_DIAGNOSTICS) {
+                logToUI(`Diagnostic Info: Origin is [${window.location.origin}]`);
+            }
+
             logToUI('Sending request to Vision API...');
             const response = await fetch(url, {
                 method: 'POST',
@@ -74,8 +78,28 @@ const OCRManager = (() => {
             // Check HTTP Status
             if (!response.ok) {
                 const errText = await response.text();
-                logToUI(`HTTP Error ${response.status}: ${errText.substring(0, 100)}...`);
-                throw new Error(`HTTP ${response.status}: ${errText}`);
+                let errorDetails = "";
+                try {
+                    const errJson = JSON.parse(errText);
+                    errorDetails = JSON.stringify(errJson, null, 2);
+                    
+                    // Specific diagnosis for 403
+                    if (response.status === 403) {
+                        const reason = errJson.error?.details?.[0]?.reason || "UNKNOWN";
+                        const message = errJson.error?.message || "";
+                        
+                        logToUI(`!!! DIAGNOSIS BLOACKED !!!`);
+                        logToUI(`Reason: ${reason}`);
+                        logToUI(`Hint: If reason is API_KEY_SERVICE_BLOCKED, please check 'API Restrictions' in Google Console.`);
+                        logToUI(`Hint: If message mentions 'Referer', please check 'Website Restrictions' in Google Console.`);
+                    }
+                } catch (e) {
+                    errorDetails = errText;
+                }
+                
+                logToUI(`HTTP Error ${response.status}: See details below.`);
+                console.error("Full Error JSON:", errText);
+                throw new Error(`HTTP ${response.status}: ${errorDetails}`);
             }
 
             const data = await response.json();
