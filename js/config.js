@@ -9,7 +9,7 @@
 
 const CONFIG = {
     // Client ID from test01/sensitive.env
-    CLIENT_ID: '80061118878-smdd31gk43q6sbe6nbvdlflhq0qacnho.apps.googleusercontent.com',
+    CLIENT_ID: 'YOUR_GOOGLE_CLIENT_ID_HERE',
 
     // API Key from test01/sensitive.env
     // [TROUBLESHOOTING]: If you see 403 API_KEY_SERVICE_BLOCKED:
@@ -17,7 +17,7 @@ const CONFIG = {
     // 2. Ensure "API Enable" is definitely active.
     // 3. Visit: https://console.cloud.google.com/apis/credentials
     // 4. Check "API Restrictions" on your key. Set to "None" or add "Cloud Vision API".
-    API_KEY: 'AIzaSyAad7067Y5S6Bs8gPkYh6G-LWRO1u5dzbU',
+    API_KEY: 'YOUR_GOOGLE_API_KEY_HERE',
 
     // OAuth Scopes
     SCOPES: [
